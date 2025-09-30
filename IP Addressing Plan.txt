@@ -1,0 +1,37 @@
+IP Addressing Plan
+This document outlines the IP addressing scheme for the two-building office network.
+
+Building 1 (Left LAN)
+Network Address: 192.24.24.0
+
+Subnet Mask: 255.255.255.0 (/24)
+
+Default Gateway: 192.24.24.1 (Router1 - G0/0)
+
+DHCP Server: 192.24.24.2 (Server1)
+
+DNS Server: 192.24.24.2 (Server1)
+
+DHCP Scope: 192.24.24.3 - 192.24.24.254
+
+Building 2 (Right LAN)
+Network Address: 192.24.25.0
+
+Subnet Mask: 255.255.255.0 (/24)
+
+Default Gateway: 192.24.25.1 (Router1 - G0/1)
+
+DHCP Server: 192.24.24.2 (via DHCP Relay on Router1)
+
+DNS Server: 192.24.24.2 (via DHCP Relay on Router1)
+
+DHCP Scope: 192.24.25.2 - 192.24.25.254
+
+WAN Link (Router1 to ISP Router)
+Network Address: 192.24.26.0
+
+Subnet Mask: 255.255.255.0 (/24)
+
+Router1 IP: 192.24.26.1 (G0/2)
+
+ISP Router IP: 192.24.26.2 (G0/0)

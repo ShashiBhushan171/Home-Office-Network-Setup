@@ -1,0 +1,99 @@
+! This is the running configuration for the main router (Router1)
+
+!
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Router1
+!
+boot-start-marker
+boot-end-marker
+!
+!
+no aaa new-model
+!
+!
+ip cef
+!
+!
+!
+!
+ip name-server 255.255.255.255
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+description Link to Building 1 LAN
+ip address 192.24.24.1 255.255.255.0
+ip nat inside
+duplex auto
+speed auto
+!
+interface GigabitEthernet0/1
+description Link to Building 2 LAN
+ip address 192.24.25.1 255.255.255.0
+ip helper-address 192.24.24.2
+ip nat inside
+duplex auto
+speed auto
+!
+interface GigabitEthernet0/2
+description Link to ISP
+ip address 192.24.26.1 255.255.255.0
+ip nat outside
+duplex auto
+speed auto
+!
+interface Vlan1
+no ip address
+shutdown
+!
+ip forward-protocol nd
+!
+!
+ip http server
+ip http secure-server
+!
+ip nat inside source list 1 interface GigabitEthernet0/2 overload
+ip route 0.0.0.0 0.0.0.0 192.24.26.2
+!
+!
+access-list 1 permit 192.24.24.0 0.0.0.255
+access-list 1 permit 192.24.25.0 0.0.0.255
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+line con 0
+line aux 0
+line vty 0 4
+login
+!
+!
+end
